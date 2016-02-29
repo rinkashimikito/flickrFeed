@@ -1,7 +1,7 @@
 // http://api.flickr.com/services/feeds/photos_public.gne?format=json&jsoncallback=flickr.cb&tags=london
 
 angular.module('flickr', ['ionic'])
-    .controller('ItemsCtrl', ['$scope', '$http', '$ionicModal', function($scope, $http, $ionicModal) {
+    .controller('ItemsCtrl', ['$scope', '$http', '$ionicModal', '$ionicSideMenuDelegate', function($scope, $http, $ionicModal, $ionicSideMenuDelegate) {
         $scope.items =  [];
         $scope.tag = '';
         $scope.feed = {};
@@ -26,6 +26,8 @@ angular.module('flickr', ['ionic'])
                     $scope.status = response.status;
                     $scope.data = response.data;
                     angular.forEach(response.data.items, function(item){
+                        item.media.m = item.media.m.replace('_m.jpg', '.jpg');
+                        //item.htmlDesc = $sce.trustAsHtml(item.description);
                         $scope.items.push(item);
                     });
                 }, function(response) {
@@ -52,9 +54,15 @@ angular.module('flickr', ['ionic'])
         };
 
         $scope.doRefresh = function() {
+            $scope.items =  [];
             $scope.fetch();
             $scope.$broadcast('scroll.refreshComplete');
             $scope.$apply()
         };
 
+    }])
+    .filter("sanitize", ['$sce', function($sce) {
+      return function(htmlCode){
+          return $sce.trustAsHtml(htmlCode);
+      }
     }]);
