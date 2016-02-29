@@ -22,6 +22,9 @@ angular.module('flickr', ['ionic'])
 
             $http({method: 'jsonp', url: $scope.flickr.flickrUrl + $scope.flickr.tag}).
                 then(function(response) {
+                    $scope.status = response.status;
+                    $scope.data = response.data;
+
                     angular.forEach(response.data.items, function(item){
                         item.media.m = item.media.m.replace('_m.jpg', '.jpg');
                         $scope.flickr.items.push(item);
