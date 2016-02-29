@@ -1,2 +1,2 @@
-Ionic App test
-
+# Ionic - AngularJS test
+Flickr feed in app
