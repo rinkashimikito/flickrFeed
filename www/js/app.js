@@ -22,6 +22,8 @@ angular.module('flickr', ['ionic'])
 
             $http({method: 'jsonp', url: $scope.flickr.flickrUrl + $scope.flickr.tag}).
                 then(function(response) {
+                  $scope.data = {};
+
                     $scope.status = response.status;
                     $scope.data = response.data;
 
