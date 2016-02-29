@@ -35,34 +35,21 @@
             <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()">
             </ion-refresher>
             <ion-list>
-                <!--<ion-item ng-repeat="item in items">-->
-                    <div class="list card" ng-repeat="item in items">
+                <div class="list card" ng-repeat="item in flickr.items">
 
-                        <div class="item item-avatar">
-                            <img ng-src="https://answers.atlassian.com/images/icons/profilepics/default.png">
-                            <h2>{{ item.author }}</h2>
-                            <p>{{ item.date_taken }}</p>
-                        </div>
-
-                        <div class="item item-body">
-                            <a ng-href="{{ item.link }}"><img class="full-image" ng-src="{{item.media.m}}"></a>
-                            <!--<div ng-bind-html="item.description || sanitize"></div>-->
-                            <p>
-                                <!--<a href="#" class="subdued">1 Like</a>-->
-                                <!--<a href="#" class="subdued">5 Comments</a>-->
-                            </p>
-                        </div>
-
+                    <div class="item item-avatar">
+                        <img ng-src="https://answers.atlassian.com/images/icons/profilepics/default.png">
+                        <h2>{{ item.author }}</h2>
+                        <p>{{ item.date_taken }}</p>
                     </div>
-                <!--</ion-item>-->
+
+                    <div class="item item-body">
+                        <a ng-href="{{ item.link }}"><img class="full-image" ng-src="{{item.media.m}}"></a>
+                    </div>
+
+                </div>
             </ion-list>
         </ion-content>
-
-
-
-
-
-
 
         <script id="new-tag.html" type="text/ng-template">
 
